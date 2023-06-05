@@ -1,13 +1,22 @@
-import { useState } from 'react'
-import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+import React from 'react';
+import Hero from './components/Hero';
+import Demo from './components/Demo';
+import './App.css';
 
+
+const App = () => {
   return (
-    <>
-     <h1>React + Vite</h1> 
-    </>
+    <main>
+      <div className="main">  
+          <div className="gradient"/>
+      </div>
+
+      <div className="app ">
+        <Hero/>
+        <Demo/>
+      </div>
+    </main>
   )
 }
 
