@@ -3,6 +3,7 @@ import React from 'react';
 import Hero from './components/Hero';
 import Demo from './components/Demo';
 import './App.css';
+import Particle from './components/Particle';
 
 
 const App = () => {
@@ -11,6 +12,7 @@ const App = () => {
       <div className="main">  
           <div className="gradient"/>
       </div>
+      <Particle/>
 
       <div className="app ">
         <Hero/>

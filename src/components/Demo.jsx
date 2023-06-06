@@ -10,7 +10,7 @@ const Demo = () => {
     });
 
     const handleSubmit = async(e) => {
-        // e.prevent.default
+        e.prevent.default
         alert("Enviado");
     }
 
