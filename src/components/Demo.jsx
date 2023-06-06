@@ -10,7 +10,18 @@ const Demo = () => {
         summary: '',
     });
 
-    const [getSummary, { error, isFetching}] = useLazyGetSummaryQuery() ;
+    const [allArticle, setAllArticle] = useState([]); //guarda todos los articulos que se han resumido
+
+    const [getSummary, { error, isFetching}] = useLazyGetSummaryQuery();
+
+    useEffect(() => {
+        const articlesFromLocalStorage = JSON.parse(localStorage.getItem('articles')) || []; //obtenemos los articulos del localstorage
+
+        if(articlesFromLocalStorage){
+            setAllArticle(articlesFromLocalStorage); //actualizamos el estado 'allArticle' con los articulos del localstorage
+        }
+
+    }, []); //se ejecuta cuando el componente se monta por primera vez
 
     const handleSubmit = async(e) => {
         e.preventDefault(); //evita que el navegador se actualice cuando se envía el formulario
@@ -18,8 +29,14 @@ const Demo = () => {
 
         if(data?.summary) {
             const newArticle = {...article, summary: data.summary}; //creamos un nuevo objeto con el estado 'article' y el atributo 'summary' donde se guardará el resumen
+
+            const updatedArticles = [newArticle, ...allArticle]; //creamos un nuevo array con todos los articulos que se han resumido
+
             setArticle(newArticle); //actualizamos el estado 'article' con el nuevo objeto
-            console.log("articuloooo", newArticle);
+            setAllArticle(updatedArticles); //actualizamos el estado 'allArticle' con el nuevo array
+            console.log("articuloooos", updatedArticles);
+
+            localStorage.setItem('articles', JSON.stringify(updatedArticles)); //guardamos los articulos en el localstorage
         }
     }
 
